@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="button.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>Quà 8-3 tặng GN &lt;3</title>
+</head>
+<body>
+    <div class="container">
+        <a href="#" onclick="startScript()">
+            <span>Chị Gia Nghi!</span>
+            <span>Nhấn vào đây!</span>
+        </a>
+    </div>
+    <div class="heart_container">
+    </div>
+    <div class="card">
+        <div class="imgBox">
+            <img src="./img/gn1.jpg" alt="Dễ thương quá &gt;&lt;">
+            <img src="./img/gn3.jpg" alt="">
+        </div>
+        <div class="detail">
+            <div class="content">
+                <h2>Gửi<span> chị Gia Nghi</span></h2>
+                <br>
+                <p>
+                    Không biết làm gì hơn để bày tỏ tấm lòng này đến chị, món quà này thay mặt em là bày tỏ điều còn dấu kín không thể nói...
+                    Ngày đầu tiên gặp chị, em đã ngay lập tức bị ấn tượng bởi sự siu "ngầu" lunnn. Nhân ngày 8-3 em có một món quà nhỏ gửi cho chị ạ! 
+                </p>
+                <br>
+                <h2 style="text-align: right !important">
+                    Người gửi
+                </h2>
+                <p style="text-align: right;">Mạnh Tường</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function startScript(){
+            let container = document.querySelector(".container");
+            anime({
+                targets: ".container",
+                opacity: 1,
+                duration: 1000,
+                complete: function(){
+                    container.style.display = "none";
+                    showHeartAndCard();
+                }
+            });
+        }
+        function showHeartAndCard(){
+            animateHearts();
+            let hearts = document.querySelectorAll(".heart");
+            hearts.forEach(function(heart){
+                heart.classList.add('heart-shadow');
+                heart.classList.add('heart-right-shadow');
+                heart.classList.add('heart-left-shadow');
+            });
+            let container = document.querySelector(".heart_container");
+            anime({
+                targets: ".heart_container",
+                opacity: 1,
+                duration: 2000,
+                complete: function(){
+                    container.style.background = "#f43f5e";
+                    let card = document.querySelector(".card");
+                    card.style.display = "flex";
+                    anime({
+                        targets: ".card",
+                        opacity: 1,
+                        duration: 500,
+                        complete: function(){
+                            setTimeout(function(){
+                                card.classList.add("card-active-hover")
+                            }, 500);
+                        }
+                    })
+                }
+            });
+        }
+    </script>
+    <script>
+        const container = document.querySelector(".heart_container");
+        //tao nhieu trai tym
+        for(let i = 1; i<=80; ++i)
+        {
+            const hearts = document.createElement('div');
+            hearts.classList.add('heart');
+            container.appendChild(hearts);
+        }
+
+        //animation
+
+        function animateHearts(){
+            anime({
+                targets: '.heart',
+                translateX: function(){
+                    return anime.random(-1000, 1000);
+                },
+                translateY: function(){
+                    return anime.random(-700, 700);
+                },
+                rotate: 45, 
+                scale: function(){
+                    return anime.random(1, 8);
+                },
+                easing: 'easeInOutBack',
+                duration: 3000,
+                delay: anime.stagger(10),
+                complete: animateHearts
+            });
+        }
+    </script>
+</body> 
+</html>
